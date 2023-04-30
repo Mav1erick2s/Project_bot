@@ -6,10 +6,17 @@ from extension import ConvertionException, APIExeption
 bot = telebot.TeleBot(TOKEN) #Подключаемся к @money_converted_bot
 
 
-@bot.message_handler(commands=['start', 'help']) #При вводе команды /start или /help пользователю выводятся инструкции по применению бота
+@bot.message_handler(commands=['start']) #При вводе команды /start или /help пользователю выводятся инструкции по применению бота
+def start(message: telebot.types.Message):
+    text = 'Привет!)))\nЯ чат-бот для конвертирования валют и помогу тебе узнать актуальный курс нужной тебе валюты.' \
+           '\nЧтобы узнать как работает бот нажми: /help'
+    bot.reply_to(message, text)
+
+
+@bot.message_handler(commands=['help']) #При вводе команды /start или /help пользователю выводятся инструкции по применению бота
 def help(message: telebot.types.Message):
-    text = 'Чтобы начать работу введите название валюты в формате \n<имя валюты> \ <в какую валюту необходимо перевести>' \
-           ' \ <сумма исходной валюты> , \nпример: рубль доллар 100 \nУвидеть список всех доступных валют: /values '
+    text = 'Чтобы начать работу введите название валюты в формате \n<имя валюты>  <в какую валюту необходимо перевести>  ' \
+           '<сумма исходной валюты>\nПример: рубль доллар 100 \nПосмотреть список всех доступных валют: /values '
     bot.reply_to(message, text)
 
 
